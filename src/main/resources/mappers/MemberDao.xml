@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jsframe.membermanager.dao.MemberDao">
+
+    <insert id="insertMember" parameterType="com.jsframe.membermanager.dto.MemberDto">
+        INSERT INTO membertbl
+        VALUES (#{m_id},#{m_pwd},#{m_name},#{m_birth},#{m_phone})
+    </insert>
+    <select id="selectPwd" resultType="java.lang.String" parameterType="String">
+        SELECT m_pwd FROM membertbl WHERE m_id=#{mid}
+    </select>
+    <select id="selectMember" resultType="com.jsframe.membermanager.dto.MemberDto" parameterType="String">
+        SELECT m_id, m_name, m_birth, m_phone FROM membertbl
+        WHERE m_id=#{mid}
+    </select>
+    <update id="updateMember" parameterType="MemberDto">
+        UPDATE membertbl
+        SET m_name=#{m_name}, m_birth=#{m_birth}, m_phone=#{m_phone}
+        WHERE m_id=#{m_id}
+    </update>
+    <delete id="deleteMember" parameterType="String">
+        DELETE FROM membertbl
+        WHERE m_id=#{mid}
+    </delete>
+</mapper>
